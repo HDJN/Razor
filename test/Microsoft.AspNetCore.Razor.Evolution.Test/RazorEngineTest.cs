@@ -73,16 +73,18 @@ namespace Microsoft.AspNetCore.Razor.Evolution
 
         private static void AssertDefaultFeatures(IEnumerable<IRazorEngineFeature> features)
         {
-            Assert.Empty(features);
-        }
-
-        private static void AssertDefaultPhases(IReadOnlyList<IRazorEnginePhase> features)
-        {
             Assert.Collection(
                 features,
-                f => Assert.IsType<DefaultRazorParsingPhase>(f),
-                f => Assert.IsType<DefaultRazorSyntaxTreePhase>(f),
-                f => Assert.IsType<DefaultRazorIRLoweringPhase>(f));
+                feature => Assert.IsType<HtmlNodeOptimizationPass>(feature));
+        }
+
+        private static void AssertDefaultPhases(IReadOnlyList<IRazorEnginePhase> phases)
+        {
+            Assert.Collection(
+                phases,
+                phase => Assert.IsType<DefaultRazorParsingPhase>(phase),
+                phase => Assert.IsType<DefaultRazorSyntaxTreePhase>(phase),
+                phase => Assert.IsType<DefaultRazorIRLoweringPhase>(phase));
         }
     }
 }
