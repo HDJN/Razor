@@ -15,6 +15,10 @@ namespace Microsoft.AspNetCore.Razor.Evolution.Legacy
 
         public string Prefix { get; }
 
+        public override void Accept(ParserVisitor visitor, Span span)
+        {
+        }
+
         public override void GenerateChunk(Span target, ChunkGeneratorContext context)
         {
             //context.ChunkTreeBuilder.AddTagHelperPrefixDirectiveChunk(Prefix, target);
